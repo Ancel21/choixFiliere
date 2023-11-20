@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Résultats</h1>
+
+    <p>Nombre d'étudiants choisis IPS: {{ count_ips }}</p>
+    <p>Nombre d'étudiants choisis ASTRE: {{ count_astre }}</p>
+    <p>Nombre d'étudiants indécis: {{ count_indecis }}</p>
+
+    <h2 class="mt-5">Poids des critères</h2>
+    <ul>
+        <li>Techno & outils: {{ weights['Techno & outils'] }}</li>
+        <li>Passe temps et passion: {{ weights['Passe temps et passion'] }}</li>
+        <li>Ambitions & objectifs professionnels: {{ weights['Ambitions & objectifs professionnels'] }}</li>
+    </ul>
+
+    <!-- Ajout du diagramme -->
+    <div class="mt-5">
+        <canvas id="myChart" width="200" height="200"></canvas>
+    </div>
+
+    <script>
+        // Données pour le diagramme
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['IPS', 'ASTRE', 'Indécis'],
+                datasets: [{
+                    data: [{{ count_ips }}, {{ count_astre }}, {{ count_indecis }}],
+                    backgroundColor: ['#ffcd56', '#36a2eb', '#ff6384'],
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Répartition des étudiants'
+                    }
+                }
+            }
+        });
+    </script>
+
+</div>
+
+</body>
+</html>
