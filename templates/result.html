@@ -15,9 +15,35 @@
 <div class="container mt-5">
     <h1 class="mb-4">Résultats</h1>
 
-    <p>Nombre d'étudiants choisis IPS: {{ count_ips }}</p>
-    <p>Nombre d'étudiants choisis ASTRE: {{ count_astre }}</p>
-    <p>Nombre d'étudiants indécis: {{ count_indecis }}</p>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="lead">Répartition des étudiants:</p>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class="col-md-6">
+            <p class="lead">Tableau des étudiants:</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Numéro d'étudiant</th>
+                        <th>Choix de filière</th>
+                        <th>Score ASTRE</th>
+                        <th>Score IPS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student_id, student_info in choix.items() %}
+                        <tr>
+                            <td>{{ student_id }}</td>
+                            <td>{{ student_info["choix_filiere"] }}</td>
+                            <td>{{ student_info["total_astre"] }}</td>
+                            <td>{{ student_info["total_ips"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <h2 class="mt-5">Poids des critères</h2>
     <ul>
@@ -25,39 +51,52 @@
         <li>Passe temps et passion: {{ weights['Passe temps et passion'] }}</li>
         <li>Ambitions & objectifs professionnels: {{ weights['Ambitions & objectifs professionnels'] }}</li>
     </ul>
+</div>
 
-    <!-- Ajout du diagramme -->
-    <div class="mt-5">
-        <canvas id="myChart" width="200" height="200"></canvas>
-    </div>
-
-    <script>
-        // Données pour le diagramme
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['IPS', 'ASTRE', 'Indécis'],
-                datasets: [{
-                    data: [{{ count_ips }}, {{ count_astre }}, {{ count_indecis }}],
-                    backgroundColor: ['#ffcd56', '#36a2eb', '#ff6384'],
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Répartition des étudiants'
-                    }
+<script>
+    // Données pour le diagramme
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['IPS', 'ASTRE', 'Indécis'],
+            datasets: [{
+                data: [{{ count_ips }}, {{ count_astre }}, {{ count_indecis }}],
+                backgroundColor: ['#ffcd56', '#36a2eb', '#ff6384'],
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Répartition des étudiants'
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
 
+<div class="container mt-5">
+    <h1 class="mb-4">Détail par étudiant</h1>
+
+    <form action="/student_detail" method="post">
+        <div class="form-group">
+            <label for="student_id">Numéro de l'étudiant :</label>
+            <input type="text" class="form-control" id="student_id" name="student_id" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Afficher les détails de l'étudiant</button>
+    </form>
 </div>
+
+<footer class="footer mt-5">
+    <div class="container">
+        <p>&copy; Novembre 2023 Ancel. Tous droits réservés.</p>
+    </div>
+</footer>
 
 </body>
 </html>
