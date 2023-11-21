@@ -1,7 +1,7 @@
 # choixFiliere
 
 Introduction:
-Le projet avait pour objectif de créer un système d'aide à la décision pour aider les étudiants à choisir entre deux filières, IPS (Informatique et Pédagogie Spécialisée) et ASTRE (Analyse des Systèmes de Traitement et de Recherche d'Informations). Le système attribue un score basé sur les réponses des étudiants à un questionnaire, avec des poids différents pour chaque critère.
+Le projet avait pour objectif de créer un système d'aide à la décision pour aider les étudiants à choisir entre deux filières, IPS  et ASTRE . Le système attribue un score basé sur les réponses des étudiants à un questionnaire, avec des poids différents pour chaque critère.
 
 Technologies Utilisées:
 
