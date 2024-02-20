@@ -9,26 +9,11 @@
 <body>
 
 <div class="container mt-5">
-    <h1 class="mb-4">Classification des étudiants</h1>
+    <h1 class="mb-4"></h1>
 
     <form action="/result" method="post">
-        <div class="form-group">
-            <label for="weight_techno"> Techno & outils:</label>
-            <input type="range" step="0.1" min="0" max="1" class="form-control-range" id="weight_techno" name="weight_techno" value="{{ weights['Techno & outils'] }}" required>
-            <span id="weight_techno_value">{{ weights['Techno & outils'] }}</span>
-        </div>
-
-        <div class="form-group">
-            <label for="weight_passion">Passe temps et passion:</label>
-            <input type="range" step="0.1" min="0" max="1" class="form-control-range" id="weight_passion" name="weight_passion" value="{{ weights['Passe temps et passion'] }}" required>
-            <span id="weight_passion_value">{{ weights['Passe temps et passion'] }}</span>
-        </div>
-
-        <div class="form-group">
-            <label for="weight_ambitions"> Ambitions & objectifs professionnels:</label>
-            <input type="range" step="0.1" min="0" max="1" class="form-control-range" id="weight_ambitions" name="weight_ambitions" value="{{ weights['Ambitions & objectifs professionnels'] }}" required>
-            <span id="weight_ambitions_value">{{ weights['Ambitions & objectifs professionnels'] }}</span>
-        </div>
+        <div class="form-group"></div>
+      
 
         <button type="submit" class="btn btn-primary">Calculer</button>
     </form>
@@ -38,24 +23,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<script>
-    // Mettre à jour la valeur du span en fonction de la position du curseur
-    $('#weight_techno').on('input', function () {
-        $('#weight_techno_value').text($(this).val());
-    });
 
-    $('#weight_passion').on('input', function () {
-        $('#weight_passion_value').text($(this).val());
-    });
-
-    $('#weight_ambitions').on('input', function () {
-        $('#weight_ambitions_value').text($(this).val());
-    });
-</script>
 
 <footer class="footer mt-5">
     <div class="container">
-        <p>&copy; Novembre 2023 Ancel. Tous droits réservés.</p>
+        <p>&copy; Dataviz_inflation Fevrier 2024. Tous droits réservés.</p>
     </div>
 </footer>
 
